@@ -84,6 +84,19 @@ const (
 	// WildcardCertDomainLabelKey is the label key attached to a certificate to indicate the
 	// domain for which it was issued.
 	WildcardCertDomainLabelKey = "networking.knative.dev/wildcardDomain"
+
+	// CustomGatewayAnnotationKey is the annotation for specifing the Gateway the VirtualService
+	// should use. This will append to the list of Gateways that Knative creates. For example,
+	//
+	//    networking.knative.dev/customGateway: default/some-gateway
+	//
+	// The Gateway name format must be of either {namespace}/{gateway-name} or {gateway-name},
+	// where the latter expects the Gateway to be in the same namespace as the service.
+	// As this is a user-created custom Gateway, users are responsible for maintaining the resource.
+	// This means that Knative will NOT be responsible for creating, reconciling, or deleting
+	// this Gateway. Knative will just append this to the list of Gateways where the VirtualService 
+	// rule should be applied to.
+	CustomGatewayAnnotationKey = "networking.knative.dev/customGateway"
 )
 
 // ServiceType is the enumeration type for the Kubernetes services
