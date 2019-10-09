@@ -122,19 +122,6 @@ func MakeVirtualServices(ia v1alpha1.IngressAccessor, gateways map[v1alpha1.Ingr
 		requiredGatewayCount += gateways[v1alpha1.IngressVisibilityClusterLocal].Len()
 	}
 
-	// CUSTOM LOGIC TO SUPPORT CUSTOM GATEWAYS PER SERVICE.
-	// This is until Knative supports splitting gateways per service as tracked by this PR (https://github.com/knative/serving/pull/4909).
-	customGateway := ia.GetAnnotations()[networking.CustomGatewayAnnotationKey]
-	if customGateway != "" {
-		requiredGatewayCount++
-		// Name format of the custom gateway is either {namespace}/{gateway-name} or {gateway-name}.
-		// If namespace is not specified, it will default to the service namespace.
-		if !strings.Contains(customGateway, "/") {
-			customGateway = VirtualServiceNamespace(ia) + "/" + customGateway
-		}
-		gateways[v1alpha1.IngressVisibilityExternalIP].Insert(customGateway)
-	}
-
 	if requiredGatewayCount > 0 {
 		vss = append(vss, MakeIngressVirtualService(ia, gateways))
 	}
