@@ -31,7 +31,7 @@ function do_push() {
     docker push ${image}
   done
 }
-ACR_SERVER=knative.azurecr.io
+ACR_SERVER=viennadroptest.azurecr.io
 #docker login ${ACR_SERVER} -u ${ACR_USER} -p ${ACR_PWD}
 tag_images_in_yamls $@
 replace_cr_in_yamls $@

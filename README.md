@@ -1,4 +1,9 @@
 # Knative Serving
+HACK RELEASE THIS UGLY UGLY FORK:
+1. get docker secretes to viennadroptest
+1. ./hack/release.sh --skip-tests --release-acr viennadroptest --release-azblob https://knrelease.blob.core.windows.net/joon --publish
+1. Then copy serving.yaml
+1. Then replace the image names with the XTAG from release.sh in vendor (ugh)
 
 [![GoDoc](https://godoc.org/github.com/knative/serving?status.svg)](https://godoc.org/github.com/knative/serving)
 [![Go Report Card](https://goreportcard.com/badge/knative/serving)](https://goreportcard.com/report/knative/serving)
