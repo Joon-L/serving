@@ -34,7 +34,7 @@ const (
 
 	// ProgressDeadlineSeconds is the time in seconds we wait for the deployment to
 	// be ready before considering it failed.
-	ProgressDeadlineSeconds = int32(120)
+	ProgressDeadlineSeconds = int32(600)
 )
 
 var (
